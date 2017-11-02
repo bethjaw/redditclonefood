@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>{{title}}</title>
-    <link rel='stylesheet' href='style.css'>
+    <link rel='stylesheet' href='/style.css'>
   </head>
   <body>
     <header>
-        <img src='chef-hat.png'>
+        <img src='/chef-hat.png'>
         <h2>FoodFeed</h2>
 
         <nav class='nav'>
@@ -17,18 +17,20 @@
 
     </header>
 
-    <h3>Leave a Comment!</h3>
+    <h4>Tell us what you think!</h4>
+    {{#each commentData}}
+      <form class='commentForm' method='post' action='/newcomment/'>
+        <label>Name</label>
+          <input name='name' value='' type='text'>
+        <label>Comment</label>
+          <input name='comment' value='' type='text'>
+        <input type='hidden' name='id' value='{{commentData.link_id}}'>
+        <button type='submit'>Comment</button>
+      </form>
 
-    <form class='commentForm' method='post' action='/newcomment/'>
-      <label>Name</label>
-      <input name='name' value='' type='text'>
-      <label>Comment</label>
-      <input name='comment' value='' type='text'>
-      <!-- <input type='text' name='id' value='{{linkData.id}}'> -->
-      <button type='submit'>Comment</button>
-    </form>
-
-    <p>{{commentData}}</p>
+      <h4>See what others had to say...</h4>
+        <p>{{name}}: {{comment}}</p>
+    {{/each}}
 
   </body>
 </html>

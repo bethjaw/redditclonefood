@@ -11,8 +11,6 @@ function addLink(link){
 
 
 function getLinkById(id){
-  // id = Number(id)
-  // console.log('query', id)
   return db('links').select().where('id', id)
 }
 
@@ -39,9 +37,9 @@ function getComments(id){
   return db('comments').select('*').where('link_id', id)
 }
 
-// function addComment(id){
-//   return db('comments').select('*').where('link_id', id)
-// }
+function addComment(id){
+  return db('comments').select('*').where('link_id', id)
+}
 
 module.exports = {
   getLinks: getLinks,
@@ -50,6 +48,6 @@ module.exports = {
   updateVote: updateVote,
   decreaseVote: decreaseVote,
   getComments: getComments,
-  // addComment: addComment
+  addComment: addComment
 
 }

@@ -36,7 +36,11 @@
         <a class='link' href="{{link}}" target='_blank'><p>{{title}}</p></a>
 
       </div>
-        <a href='/comment/{{id}}'><button>Comment</button></a>
+
+      <form method='post' action='/comment/{{id}}'>
+        <button type='submit'>Comment</button>
+      </form>
+
     {{/each}}
 
     <p>{{linkvote}}</p>

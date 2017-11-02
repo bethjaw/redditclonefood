@@ -68,12 +68,10 @@ app.put('/down/:id', (req, res) => {
 })
 
 
-app.get('/comment/:id', (req, res) => {
+app.post('/comment/:id', (req, res) => {
   const linkid = Number(req.params.id)
-  console.log('route', linkid)
     query.getComments(linkid)
     .then(commentData => {
-      // res.send(commentData)
       res.render('comments', {
         title: 'Leave a Comment',
         commentData: commentData
