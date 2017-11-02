@@ -19,15 +19,16 @@
 
     <h3>Leave a Comment!</h3>
 
-    <form class='' method='post' action=''>
+    <form class='commentForm' method='post' action='/newcomment/'>
       <label>Name</label>
       <input name='name' value='' type='text'>
       <label>Comment</label>
       <input name='comment' value='' type='text'>
+      <!-- <input type='text' name='id' value='{{linkData.id}}'> -->
       <button type='submit'>Comment</button>
     </form>
 
-    <p>{{comment}}</p>
+    <p>{{commentData}}</p>
 
   </body>
 </html>

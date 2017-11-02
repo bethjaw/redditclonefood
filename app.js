@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override')
-// const routes = require('./routes')
 const query = require('./db/queries')
 
 var port = process.env.PORT || 3000
@@ -27,18 +26,12 @@ app.get('/', (req, res) => {
 })
 
 
-
 app.get('/addlink', (req, res) => {
   res.render('addlink', {
     title: 'Add to the list'
   })
 })
 
-app.get('/comment', (req, res) => {
-  res.render('comment', {
-    title: 'Leave a Comment'
-  })
-})
 
 
 app.post('/newLink', (req,res) => {
@@ -47,11 +40,9 @@ app.post('/newLink', (req,res) => {
     res.render('addLink', {
       description: 'Thanks for contributing! Head back to home and check out your post!',
       addedLink: addedLink
-
     })
   })
 })
-
 
 
 app.put('/up/:id', (req, res) => {
@@ -75,6 +66,26 @@ app.put('/down/:id', (req, res) => {
     res.redirect('/')
   })
 })
+
+
+app.get('/comment/:id', (req, res) => {
+  const linkid = Number(req.params.id)
+  console.log('route', linkid)
+    query.getComments(linkid)
+    .then(commentData => {
+      // res.send(commentData)
+      res.render('comments', {
+        title: 'Leave a Comment',
+        commentData: commentData
+      })
+    })
+  })
+
+
+// app.post('/newcomment', (req, res) => {
+//   query.addComments(req.body)
+//
+// })
 
 
 

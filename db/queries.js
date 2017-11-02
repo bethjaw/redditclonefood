@@ -11,13 +11,15 @@ function addLink(link){
 
 
 function getLinkById(id){
+  // id = Number(id)
+  // console.log('query', id)
   return db('links').select().where('id', id)
 }
 
 
 function updateVote(id, vote){
   // console.log('hit query');
-  // console.logt(typeof id)
+  // console.log(typeof id)
   vote = Number(vote)
   return db('links').where('id', id).update('vote', vote+1).returning('vote')
 }
@@ -33,11 +35,21 @@ function decreaseVote(id, vote){
 // .orderby('vote', 'desc')
 
 
+function getComments(id){
+  return db('comments').select('*').where('link_id', id)
+}
+
+// function addComment(id){
+//   return db('comments').select('*').where('link_id', id)
+// }
 
 module.exports = {
   getLinks: getLinks,
   addLink: addLink,
   getLinkById: getLinkById,
   updateVote: updateVote,
-  decreaseVote: decreaseVote
+  decreaseVote: decreaseVote,
+  getComments: getComments,
+  // addComment: addComment
+
 }
