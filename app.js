@@ -93,6 +93,15 @@ app.post('/newcomment', (req, res) => {
 
 })
 
+app.delete('/delete/comment', (req, res) =>{
+  const id = Number(req.body.id)
+  query.deleteComment(id)
+  .then(delCom => {
+    // res.send('deleted comment')
+    res.redirect('/')
+  })
+})
+
 
 
 app.listen(port, (req, res) => {

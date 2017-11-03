@@ -40,6 +40,10 @@ function addComment(comment){
   return db('comments').insert(comment).returning('*')
 }
 
+function deleteComment(id){
+  return db('comments').delete().where('id', id)
+}
+
 module.exports = {
   getLinks: getLinks,
   addLink: addLink,
@@ -47,6 +51,6 @@ module.exports = {
   updateVote: updateVote,
   decreaseVote: decreaseVote,
   getComments: getComments,
-  addComment: addComment
-
+  addComment: addComment,
+  deleteComment: deleteComment
 }

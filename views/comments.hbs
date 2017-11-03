@@ -32,6 +32,10 @@
 
     {{#each commentData}}
         <p>{{name}}: {{comment}}</p>
+        <form name='deletecomment' method='POST' action='/delete/comment?_method=DELETE'>
+          <input type='hidden' value='{{id}}' name='id'>
+        <button>Delete Comment</button>
+      </form>
     {{/each}}
 
 
