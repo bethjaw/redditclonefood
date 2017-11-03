@@ -18,19 +18,22 @@
     </header>
 
     <h4>Tell us what you think!</h4>
-    {{#each commentData}}
-      <form class='commentForm' method='post' action='/newcomment/'>
+
+      <form class='commentForm' method='post' action='/newcomment'>
         <label>Name</label>
           <input name='name' value='' type='text'>
         <label>Comment</label>
           <input name='comment' value='' type='text'>
-        <input type='hidden' name='id' value='{{commentData.link_id}}'>
+        <input type='hidden' name='link_id' value='{{link_id}}'>
         <button type='submit'>Comment</button>
       </form>
 
-      <h4>See what others had to say...</h4>
+    <h4>See what others had to say...</h4>
+
+    {{#each commentData}}
         <p>{{name}}: {{comment}}</p>
     {{/each}}
+
 
   </body>
 </html>

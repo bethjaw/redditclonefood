@@ -52,7 +52,6 @@ app.put('/up/:id', (req, res) => {
   const linkid = Number(req.params.id)
   query.updateVote(linkid, vote)
   .then(vote => {
-    // res.send(vote)
     res.redirect('/')
   })
 })
@@ -68,22 +67,31 @@ app.put('/down/:id', (req, res) => {
 })
 
 
+
 app.post('/comment/:id', (req, res) => {
-  const linkid = Number(req.params.id)
-    query.getComments(linkid)
+  const link_id = Number(req.params.id)
+    query.getComments(link_id)
     .then(commentData => {
       res.render('comments', {
         title: 'Leave a Comment',
-        commentData: commentData
+        commentData: commentData,
+        link_id: link_id
       })
     })
   })
 
+app.get('/comments', (req, res) => {
+  res.render('comments')
+})
 
-// app.post('/newcomment', (req, res) => {
-//   query.addComments(req.body)
-//
-// })
+app.post('/newcomment', (req, res) => {
+  const comment = req.body
+  query.addComment(comment)
+  .then(newComData => {
+    res.redirect('/')
+  })
+
+})
 
 
 

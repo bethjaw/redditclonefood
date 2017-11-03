@@ -28,8 +28,7 @@ function decreaseVote(id, vote){
   return db('links').where('id', id).update('vote', vote-1).returning('vote')
 }
 
-
-// get all votes?
+// getallvotes?
 // .orderby('vote', 'desc')
 
 
@@ -37,8 +36,8 @@ function getComments(id){
   return db('comments').select('*').where('link_id', id)
 }
 
-function addComment(id){
-  return db('comments').select('*').where('link_id', id)
+function addComment(comment){
+  return db('comments').insert(comment).returning('*')
 }
 
 module.exports = {
